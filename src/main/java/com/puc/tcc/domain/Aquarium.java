@@ -12,25 +12,22 @@ public class Aquarium extends BaseEntity {
 	private final String name;
 	private final Float temperature;
 	private final Float ph;
-	private final User owner;
 	@OneToMany(mappedBy = "specie")
 	private final Set<Fish> fish;
 
-	public Aquarium(String name, Float temperature, Float ph, User owner, Set<Fish> fish) {
+	public Aquarium(String name, Float temperature, Float ph, Set<Fish> fish) {
 		super(null);
 		this.name = name;
 		this.temperature = temperature;
 		this.ph = ph;
-		this.owner = owner;
 		this.fish = new HashSet<>(fish);
 	}
 
-	public Aquarium(Integer id, String name, Float temperature, Float ph, User owner, Set<Fish> fish) {
+	public Aquarium(Integer id, String name, Float temperature, Float ph, Set<Fish> fish) {
 		super(id);
 		this.name = name;
 		this.temperature = temperature;
 		this.ph = ph;
-		this.owner = owner;
 		this.fish = fish;
 	}
 
@@ -44,10 +41,6 @@ public class Aquarium extends BaseEntity {
 
 	public Float getPh() {
 		return ph;
-	}
-
-	public User getOwner() {
-		return owner;
 	}
 
 	public Set<Fish> getFish() {
