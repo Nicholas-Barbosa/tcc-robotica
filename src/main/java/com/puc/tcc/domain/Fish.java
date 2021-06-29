@@ -10,6 +10,10 @@ public class Fish extends BaseEntity {
 	@ManyToOne
 	private final FishSpecie specie;
 
+	public Fish() {
+		this(null, null);
+	}
+
 	public Fish(String name, FishSpecie specie) {
 		super(null);
 		this.name = name;
@@ -61,5 +65,4 @@ public class Fish extends BaseEntity {
 		return true;
 	}
 
-	
 }

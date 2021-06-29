@@ -9,6 +9,10 @@ public class FishSpecie extends BaseEntity {
 	private final Float idealTemperature;
 	private final Float idealWaterTemperature;
 
+	public FishSpecie() {
+		this(null, null, null);
+	}
+
 	public FishSpecie(String specie, Float idealTemperature, Float idealWaterTemperature) {
 		super(null);
 		this.specie = specie;

@@ -15,6 +15,10 @@ public class Aquarium extends BaseEntity {
 	@OneToMany(mappedBy = "specie")
 	private final Set<Fish> fish;
 
+	public Aquarium() {
+		this(null, null, null, new HashSet<>());
+	}
+
 	public Aquarium(String name, Float temperature, Float ph, Set<Fish> fish) {
 		super(null);
 		this.name = name;

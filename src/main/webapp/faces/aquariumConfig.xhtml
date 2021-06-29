@@ -1,10 +1,35 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
-</head>
-<body>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="../WEB-INF/template.xhtml"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions">
 
-</body>
-</html>
+	<ui:define name="head">
+		<h:outputStylesheet name="css/flags/flags.css" library="demo" />
+	</ui:define>
+
+	<ui:define name="title">Configurar aquário</ui:define>
+
+	<ui:define name="viewname">
+		<li>Aquário</li>
+		<li><i class="pi pi-chevron-right"></i></li>
+		<li><p:link outcome="/faces/aquariumConfig">Configurar aquário</p:link>
+		</li>
+	</ui:define>
+
+	<ui:define name="content">
+		<div class="p-grid">
+			<div class="p-col-12">
+				<div class="card">
+					<div class="ui-fluid p-formgrid p-grid">
+						<div class="p-field p-col-12 p-md-6">
+							<p:outputLabel for="name" value="Nome" />
+							<p:inputText id="name" />
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</ui:define>
+</ui:composition>
