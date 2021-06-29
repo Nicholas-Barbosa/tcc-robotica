@@ -2,22 +2,21 @@ package com.puc.tcc.service;
 
 import java.util.List;
 
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 
 import com.puc.tcc.domain.Fish;
+import com.puc.tcc.repository.FishRepository;
 
 @Stateless
 public class FishServiceImpl implements FishService {
 
-	@PersistenceContext(unitName = "persistenceUnit")
-	private EntityManager entityManager;
+	@EJB
+	private FishRepository fishRepository;
 
 	@Override
 	public List<Fish> findAll() {
-		// TODO Auto-generated method stub
-		return entityManager.createQuery("FROM Fish f", Fish.class).getResultList();
+		return fishRepository.findAll();
 	}
 
 }
