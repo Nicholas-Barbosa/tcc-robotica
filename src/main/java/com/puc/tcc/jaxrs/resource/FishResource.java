@@ -1,8 +1,10 @@
-package com.puc.tcc.jaxrs;
+package com.puc.tcc.jaxrs.resource;
 
 import javax.ejb.EJB;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import com.puc.tcc.service.FishService;
@@ -14,8 +16,8 @@ public class FishResource {
 	private FishService fishService;
 
 	@GET
+	@Produces(MediaType.APPLICATION_JSON)
 	public Response get() {
-		fishService.findAll();
-		return Response.ok().build();
+		return Response.ok(fishService.findAll()).build();
 	}
 }

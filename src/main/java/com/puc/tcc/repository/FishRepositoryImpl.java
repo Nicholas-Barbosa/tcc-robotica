@@ -10,7 +10,7 @@ import com.puc.tcc.domain.Fish;
 @Stateless
 public class FishRepositoryImpl implements FishRepository {
 
-	@PersistenceContext(unitName = "persitenceUnit")
+	@PersistenceContext(unitName = "persistenceUnit")
 	private EntityManager entityManager;
 
 	@Override
