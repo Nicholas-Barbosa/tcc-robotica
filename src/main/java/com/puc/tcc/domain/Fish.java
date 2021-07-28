@@ -4,11 +4,11 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class Fish extends BaseEntity {
+public class Fish extends BaseEntity implements Comparable<Fish> {
 
-	private final String name;
+	private  String name;
 	@ManyToOne
-	private final FishSpecie specie;
+	private  FishSpecie specie;
 
 	public Fish() {
 		this(null, null);
@@ -63,6 +63,12 @@ public class Fish extends BaseEntity {
 		} else if (!specie.equals(other.specie))
 			return false;
 		return true;
+	}
+
+	@Override
+	public int compareTo(Fish o) {
+		// TODO Auto-generated method stub
+		return name.compareTo(o.name);
 	}
 
 }

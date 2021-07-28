@@ -5,9 +5,9 @@ import javax.persistence.Entity;
 @Entity
 public class FishSpecie extends BaseEntity {
 
-	private final String specie;
-	private final Float idealTemperature;
-	private final Float idealWaterTemperature;
+	private String specie;
+	private Float idealTemperature;
+	private Float idealWaterTemperature;
 
 	public FishSpecie() {
 		this(null, null, null);

@@ -1,10 +1,10 @@
 package com.puc.tcc.service;
 
-import java.util.List;
+import java.util.Set;
 
 import com.puc.tcc.dto.FishDTO;
 
 public interface FishService {
 
-	List<FishDTO> findAll();
+	Set<FishDTO> findAll();
 }

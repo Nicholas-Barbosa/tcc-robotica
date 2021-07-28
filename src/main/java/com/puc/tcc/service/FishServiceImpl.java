@@ -1,7 +1,7 @@
 package com.puc.tcc.service;
 
-import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.Set;
+import java.util.concurrent.CopyOnWriteArraySet;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -17,9 +17,9 @@ public class FishServiceImpl implements FishService {
 	private FishRepository fishRepository;
 
 	@Override
-	public List<FishDTO> findAll() {
-		List<Fish> fishs = fishRepository.findAll();
-		return fishs.parallelStream().map(FishDTO::of).collect(CopyOnWriteArrayList::new, List::add, List::addAll);
+	public Set<FishDTO> findAll() {
+		Set<Fish> fishs = fishRepository.findAll();
+		return fishs.parallelStream().map(FishDTO::of).collect(CopyOnWriteArraySet::new, Set::add, Set::addAll);
 	}
 
 }

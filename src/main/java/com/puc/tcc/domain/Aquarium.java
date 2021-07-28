@@ -9,71 +9,44 @@ import javax.persistence.OneToMany;
 @Entity
 public class Aquarium extends BaseEntity {
 
-	private final String name;
-	private final Float temperature;
-	private final Float ph;
+	private  String name;
+
 	@OneToMany(mappedBy = "specie")
-	private final Set<Fish> fish;
+	private  Set<Fish> fish;
+
+	@OneToMany(mappedBy = "aquarium")
+	private  Set<AquariumMetric> metrics;
 
 	public Aquarium() {
-		this(null, null, null, new HashSet<>());
+		this(null, null, null, null);
 	}
 
-	public Aquarium(String name, Float temperature, Float ph, Set<Fish> fish) {
-		super(null);
-		this.name = name;
-		this.temperature = temperature;
-		this.ph = ph;
-		this.fish = new HashSet<>(fish);
-	}
-
-	public Aquarium(Integer id, String name, Float temperature, Float ph, Set<Fish> fish) {
+	public Aquarium(Integer id, String name, Set<Fish> fish, Set<AquariumMetric> metrics) {
 		super(id);
 		this.name = name;
-		this.temperature = temperature;
-		this.ph = ph;
 		this.fish = fish;
+		this.metrics = metrics;
+	}
+
+	public Aquarium(Integer id, String name) {
+		this(id, name, new HashSet<>(), new HashSet<>());
 	}
 
 	public String getName() {
 		return name;
 	}
 
-	public Float getTemperature() {
-		return temperature;
-	}
-
-	public Float getPh() {
-		return ph;
-	}
-
 	public Set<Fish> getFish() {
-		return new HashSet<>(fish);
+		return fish;
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		return result;
+	public Set<AquariumMetric> getMetrics() {
+		return new HashSet<>(metrics);
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Aquarium other = (Aquarium) obj;
-		if (name == null) {
-			if (other.name != null)
-				return false;
-		} else if (!name.equals(other.name))
-			return false;
-		return true;
+	public void addMetric(AquariumMetric metric) {
+		metric.setAquarium(this);
+		metrics.add(metric);
 	}
 
 }

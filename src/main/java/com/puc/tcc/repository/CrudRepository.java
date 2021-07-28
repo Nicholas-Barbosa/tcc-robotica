@@ -1,9 +1,15 @@
 package com.puc.tcc.repository;
 
-import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
-public interface CrudRepository<T> {
+import com.puc.tcc.domain.JpaEntity;
 
-	List<T> findAll();
-	
+public interface CrudRepository<T extends JpaEntity, ID> {
+
+	Set<T> findAll();
+
+	T save(T t);
+
+	Optional<T> findById(ID id);
 }
