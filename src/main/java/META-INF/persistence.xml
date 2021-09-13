@@ -17,5 +17,7 @@
 				value="org.hibernate.service.jta.platform.internal.SunOneJtaPlatform" />
 		</properties>
 	</persistence-unit>
+
+
 </persistence>
 	
