@@ -9,31 +9,33 @@ import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import com.puc.tcc.domain.Car;
+import com.puc.tcc.domain.Aquarium;
 
 @Stateless
-@TransactionAttribute(TransactionAttributeType.MANDATORY)
-public class CarCrudRepositoryImpl implements CarCrudRepository {
+@TransactionAttribute(TransactionAttributeType.REQUIRED)
+public class AquariumRepositoryImpl implements AquariumRepository {
 
 	@PersistenceContext(unitName = "persistenceUnit")
 	private EntityManager entityManager;
 
 	@Override
-	public Set<Car> findAll() {
+	public Set<Aquarium> findAll() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Car save(Car t) {
-		entityManager.persist(t);
-		return t;
+	public void save(Aquarium t) {
+		// TODO Auto-generated method stub
+
 	}
 
 	@Override
-	public Optional<Car> findById(Integer id) {
+	public Optional<Aquarium> findById(Integer id) {
 		// TODO Auto-generated method stub
-		return Optional.ofNullable(entityManager.find(Car.class, id));
+		return Optional.ofNullable(
+				entityManager.createQuery("FROM Aquarium a join fetch a.fish f join fetch f.specie s WHERE a.id =:id",
+						Aquarium.class).setParameter("id", id).getSingleResult());
 	}
 
 }

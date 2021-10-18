@@ -9,13 +9,13 @@ import javax.persistence.OneToMany;
 @Entity
 public class Aquarium extends BaseEntity {
 
-	private  String name;
-
-	@OneToMany(mappedBy = "specie")
-	private  Set<Fish> fish;
+	private String name;
 
 	@OneToMany(mappedBy = "aquarium")
-	private  Set<AquariumMetric> metrics;
+	private Set<Fish> fish;
+
+	@OneToMany(mappedBy = "aquarium")
+	private Set<AquariumMetric> metrics;
 
 	public Aquarium() {
 		this(null, null, null, null);

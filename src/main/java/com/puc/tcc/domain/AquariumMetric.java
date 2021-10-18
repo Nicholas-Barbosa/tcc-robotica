@@ -3,6 +3,7 @@ package com.puc.tcc.domain;
 import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -11,10 +12,10 @@ import javax.persistence.Table;
 @Entity
 public class AquariumMetric extends BaseEntity implements Comparable<AquariumMetric> {
 
-	private  LocalDateTime createdAt;
-	private  float temperature;
-	private  float ph;
-	@ManyToOne
+	private LocalDateTime createdAt;
+	private float temperature;
+	private float ph;
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "aqurium_id")
 	private Aquarium aquarium;
 

@@ -6,9 +6,11 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Fish extends BaseEntity implements Comparable<Fish> {
 
-	private  String name;
+	private String name;
 	@ManyToOne
-	private  FishSpecie specie;
+	private FishSpecie specie;
+	@ManyToOne
+	private Aquarium aquarium;
 
 	public Fish() {
 		this(null, null);
@@ -32,6 +34,10 @@ public class Fish extends BaseEntity implements Comparable<Fish> {
 
 	public FishSpecie getSpecie() {
 		return specie;
+	}
+
+	public Aquarium getAquarium() {
+		return aquarium;
 	}
 
 	@Override

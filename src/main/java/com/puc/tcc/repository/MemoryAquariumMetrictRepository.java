@@ -2,6 +2,7 @@ package com.puc.tcc.repository;
 
 import java.time.LocalDateTime;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.ConcurrentSkipListSet;
@@ -53,16 +54,21 @@ public class MemoryAquariumMetrictRepository implements AquariumMetricCrudReposi
 	}
 
 	@Override
-	public AquariumMetric save(AquariumMetric aquarium) {
+	public void save(AquariumMetric aquarium) {
 		int lastId = metrics.parallelStream().collect(Collectors.maxBy((a, b) -> a.getId().compareTo(b.getId()))).get()
 				.getId() + 1;
 		aquarium.setId(lastId);
 		metrics.add(aquarium);
-		return aquarium;
 	}
 
 	@Override
 	public Optional<AquariumMetric> findById(Integer id) {
 		return metrics.parallelStream().filter(a->a.getId().equals(id)).findAny();
+	}
+
+	@Override
+	public List<AquariumMetric> findOrderByLastMetrics() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

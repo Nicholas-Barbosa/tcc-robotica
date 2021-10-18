@@ -33,14 +33,12 @@
 			</ui:fragment>
 			<h:form id="menuform">
 				<pr:menu widgetVar="RainMenuWidget">
-					<p:submenu id="om_homepage"
-						label="Aquário"
-						icon="pi pi-table">
-						<p:menuitem id="om_orcamento"
-							value="últimas métricas"
-							icon="pi pi-info" outcome="aquariumInfo" />
+					<p:submenu id="om_homepage" label="Aquário" icon="pi pi-table">
+						<p:menuitem value="Aquário" icon="pi pi-info" outcome="aquarium" />
+						<p:menuitem value="últimas métricas" icon="pi pi-info"
+							outcome="aquariumMetrics" />
 					</p:submenu>
-					
+
 				</pr:menu>
 			</h:form>
 		</div>

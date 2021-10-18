@@ -1,14 +1,15 @@
 package com.puc.tcc.service;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.CopyOnWriteArraySet;
+import java.util.stream.Collectors;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
-import com.puc.tcc.cdi.qualifier.Memory;
-import com.puc.tcc.domain.AquariumMetric;
+import com.puc.tcc.cdi.qualifier.Jpa;
 import com.puc.tcc.dto.AquariumMetricDTO;
 import com.puc.tcc.dto.AquariumMetricForm;
 import com.puc.tcc.repository.AquariumMetricCrudRepository;
@@ -19,7 +20,7 @@ public class AquariumMetricServiceImpl implements AquariumMetricService {
 	private final AquariumMetricCrudRepository repository;
 
 	@Inject
-	public AquariumMetricServiceImpl(@Memory AquariumMetricCrudRepository repository) {
+	public AquariumMetricServiceImpl(@Jpa AquariumMetricCrudRepository repository) {
 		super();
 		this.repository = repository;
 	}
@@ -38,14 +39,20 @@ public class AquariumMetricServiceImpl implements AquariumMetricService {
 	}
 
 	@Override
-	public AquariumMetric save(AquariumMetricForm aquariumMetric) {
+	public void save(AquariumMetricForm aquariumMetric) {
 		// TODO Auto-generated method stub
-		return repository.save(new AquariumMetric(aquariumMetric.getTemperature(), aquariumMetric.getPh()));
+		repository.save(aquariumMetric.toEntity());
 	}
 
 	@Override
 	public Optional<AquariumMetricDTO> findById(Integer id) {
 		return repository.findById(id).map(AquariumMetricDTO::new);
+	}
+
+	@Override
+	public List<AquariumMetricDTO> findAllOrderByLastMetric() {
+		// TODO Auto-generated method stub
+		return repository.findOrderByLastMetrics().stream().map(AquariumMetricDTO::new).collect(Collectors.toList());
 	}
 
 }

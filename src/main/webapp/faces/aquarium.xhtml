@@ -1,0 +1,52 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="../WEB-INF/template.xhtml"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+
+	<ui:define name="head">
+		<h:outputStylesheet name="css/flags/flags.css" library="demo" />
+
+	</ui:define>
+
+	<ui:define name="title">Aquário | Métricas</ui:define>
+
+	<ui:define name="viewname">
+		<li>Aquário</li>
+		<li><i class="pi pi-chevron-right"></i></li>
+		<li><p:link outcome="/faces/aquariumMetrics">Métricas</p:link></li>
+	</ui:define>
+
+	<ui:define name="content">
+
+		<h:form>
+			<p:remoteCommand action="#{aquariumController.findAquarium}"
+				autoRun="true" update="@obs(findAquarium)" />
+
+		</h:form>
+
+		<div class="card">
+			<p:outputPanel>
+				<p:autoUpdate on="findAquarium" />
+				<div class="ui-fluid p-formgrid p-grid">
+					<div class="p-field p-col-12 p-md-6">
+						<p:outputLabel for="name" value="Nome" />
+						<p:inputText id="name" readonly="true"
+							value="#{aquariumController.aquarium.name}" />
+					</div>
+				</div>
+				<div>
+					Peixes
+					<p:dataTable value="#{aquariumController.aquarium.fish}" var="fish">
+						<p:column field="name" sortable="false" />
+						<p:column field="name" sortable="false" />
+					</p:dataTable>
+				</div>
+			</p:outputPanel>
+
+		</div>
+
+
+	</ui:define>
+</ui:composition>

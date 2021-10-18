@@ -9,7 +9,7 @@ public interface CrudRepository<T extends JpaEntity, ID> {
 
 	Set<T> findAll();
 
-	T save(T t);
+	void save(T t);
 
 	Optional<T> findById(ID id);
 }

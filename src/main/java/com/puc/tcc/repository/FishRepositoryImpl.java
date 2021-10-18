@@ -24,9 +24,8 @@ public class FishRepositoryImpl implements FishRepository {
 	}
 
 	@Override
-	public Fish save(Fish t) {
+	public void save(Fish t) {
 		// TODO Auto-generated method stub
-		return null;
 	}
 
 	@Override
